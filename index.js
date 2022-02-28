@@ -352,7 +352,7 @@ function playerControl(forward, turn) {
   //   )
   // );
 
-  
+  console.log('currentAction', currentAction);
 
   if (body) {
     pos = wireframeBox.position.clone();
@@ -413,9 +413,18 @@ function playerControl(forward, turn) {
       walkDirection.normalize();
       walkDirection.applyAxisAngle(rotateAngel, diroffset);
 
-      const moveX = walkDirection.x * delta * 500;
-      const moveZ = walkDirection.z * delta * 500;
-
+      let moveX, moveZ;
+      if (currentAction == "run") {
+       moveX = walkDirection.x * delta * 500;
+       moveZ = walkDirection.z * delta * 500;
+      } else if (currentAction == "walk") {
+        moveX = walkDirection.x * delta * 100;
+        moveZ = walkDirection.z * delta * 100;
+      } else {
+        moveX = 0;
+        moveZ = 0;
+      }
+      
       body.position.x -= moveZ;
       body.position.z += moveX;
 
