@@ -1,13 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+
+  <style>
+    @import "./assets/base.css";
+
+    #c {
+      position: fixed;
+      top: 0%;
+      left: 40%;
+      z-index: 1;
+    }
+
+    #x {
+      position: fixed;
+      top: 0%;
+      left: 35%;
+      z-index: 1;
+    }
+
+    #d {
+      position: fixed;
+      top: 5%;
+      left: 30%;
+      z-index: 1;
+    }
+
+    #s {
+      position: fixed;
+      top: 5%;
+      left: 20%;
+
+      z-index: 1;
+    }
+
+    #w {
+      position: fixed;
+      top: 0%;
+      left: 20%;
+
+      z-index: 1;
+    }
+
+    #shift {
+      position: fixed;
+      top: 5%;
+      left: 0%;
+
+      z-index: 1;
+    }
+
+    #a {
+      position: fixed;
+      top: 5%;
+      left: 10%;
+
+      z-index: 1;
+    }
+
+    #app {
+      max-width: 1280px;
+      margin: 0 0;
+      padding: 0;
+
+      font-weight: normal;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      line-height: 1.5;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 2rem;
+    }
+
+    a,
+    .green {
+      text-decoration: none;
+      color: hsla(160, 100%, 37%, 1);
+      transition: 0.4s;
+    }
+
+    @media (hover: hover) {
+      a:hover {
+        background-color: hsla(160, 100%, 37%, 0.2);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        display: flex;
+        place-items: center;
+        padding: 0;
+        margin: 0;
+      }
+
+      #app {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0 2rem;
+      }
+
+      header {
+        display: flex;
+        place-items: center;
+        padding-right: calc(var(--section-gap) / 2);
+      }
+
+      header .wrapper {
+        display: flex;
+        place-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        margin: 0 2rem 0 0;
+      }
+    }
+  </style>
+
+</head>
+
+<body scroll="no" style="overflow: hidden;position: fixed;">
+  <!-- <div id="app"></div> -->
+  <div id="key">
+    <div id="a">a</div>
+    <div id="d">d</div>
+    <div id="w">w</div>
+    <div id="s">s</div>
+    <div id="c">c</div>
+    <div id="x">x</div>
+  </div>
+  <!-- <div style="position: fixed; z-index: 99; color: white;">
+    <h1 style="text-align:center">
+      USE HERE </h1>
+    <p style="text-align: center;">
+      X: <span id="x_coordinate"> </span>
+      Y: <span id="y_coordinate"> </span>
+      Speed: <span id="speed"> </span> %
+      Angle: <span id="angle"> </span>
+    </p>
+    <canvas id="canvas" style="border: 1px solid white;"></canvas>
+    <script>
+      window.addEventListener('load', () => {
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var width = canvas.width = window.innerWidth / 4;
+        var height = canvas.height = window.innerHeight / 4;
+        var x = width / 2;
+        var y = height / 2;
+        var radius = 30;
+        var angle = 0;
+        var speed = 0;
+        var x_coordinate = 0;
+        var y_coordinate = 0;
+        var x_speed = 0;
+        var y_speed = 0;
+        var x_angle = 0;
+        var y_angle = 0;
+        var x_orig, y_orig;
+
+        document.getElementById('x_coordinate').innerHTML = x_coordinate;
+        document.getElementById('y_coordinate').innerHTML = y_coordinate;
+        document.getElementById('speed').innerHTML = speed;
+        document.getElementById('angle').innerHTML = angle;
+
+        function background() {
+          x_orig = width / 2;
+          y_orig = height / 2;
+
+          ctx.beginPath();
+          ctx.arc(x_orig, y_orig, radius, 0, 2 * Math.PI, true);
+          ctx.fillStyle = '#ECE5E5';
+          ctx.fill();
+        }
+
+        function joystick(width, height) {
+          ctx.beginPath();
+          ctx.arc(width, height, radius, 0, 2 * Math.PI, true);
+          ctx.fillStyle = '#F08080';
+          ctx.fill();
+          ctx.strokeStyle = '#F6ABAB';
+          ctx.lineWidth = 8;
+          ctx.stroke();
+        }
+
+        // function resize() {
+        //     radius = 200; // specify the radius to 200
+        //      width = window.innerWidth; //Sets the variable width to be equal to the windows width
+        //     height = radius * 6.5; //Sets the variable height
+        //     ctx.canvas.width = width; //sets the canvas width to be equal to variable width
+        //     ctx.canvas.height = height; //sets the canvas height
+        //     background();//draw the background
+        //     joystick(width / 2, height / 3); //sends to the joystick function this variables
+        // }
+
+        // resize();
+
+        function getPosition(event) {
+          var mouse_x = event.clientX || event.touches[0].clientX;
+          var mouse_y = event.clientY || event.touches[0].clientY;
+
+          x_coordinate = mouse_x - canvas.offsetLeft;
+          y_coordinate = mouse_y - canvas.offsetTop;
+
+          console.log(x_coordinate, y_coordinate);
+        }
+
+        function inTheCircle() {
+          var current_radius = Math.sqrt(Math.pow(x_coordinate - x_orig, 2) + Math.pow(y_coordinate - y_orig, 2));
+
+          if (current_radius <= radius) {
+            return true;
+          } else {
+            return false;
+          }
+
+        }
+        var paint;
+        function startDrawing(event) {
+          paint = true;
+          getPosition(event);
+
+          if (inTheCircle()) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            background();
+            joystick(x_coordinate, y_coordinate);
+            Draw();
+          }
+
+
+        }
+
+        function Draw() {
+          if (paint) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            background();
+            angle = Math.atan2(y_coordinate - y_orig, x_coordinate - x_orig);
+
+            if (Math.sign(angle) == -1) {
+              angleInDegrees = Math.round(-angle * 180 / Math.PI);
+            } else {
+              angleInDegrees = Math.round(360 - angle * 180 / Math.PI);
+            }
+          }
+
+          if (inTheCircle()){
+            joystick(x_coordinate, y_coordinate);
+            x = x_coordinate;
+            y = y_coordinate;
+
+          } else {
+            x = radius * Math.cos(angle) + x_orig;
+            y = radius * Math.sin(angle) + y_orig;
+            joystick(x, y);
+          }
+
+          getPosition(event);
+          speed = Math.round(Math.sqrt(Math.pow(x_coordinate - x_orig, 2) + Math.pow(y_coordinate - y_orig, 2)) / radius * 100);
+
+          var x_relative = Math.round(x_coordinate - x_orig);
+          var y_relative = Math.round(y_coordinate - y_orig);
+
+          document.getElementById('x_coordinate').innerHTML = x_relative;
+          document.getElementById('y_coordinate').innerHTML = y_relative;
+          document.getElementById('speed').innerHTML = speed;
+          document.getElementById('angle').innerHTML = angleInDegrees;
+
+        }
+
+        function stopDrawing() {
+          paint = false;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          background();
+          joystick(width/2, height/2);
+        }
+
+        document.addEventListener('mousedown', startDrawing);
+        document.addEventListener('mouseup', stopDrawing);
+        document.addEventListener('mousemove', Draw);
+
+        document.addEventListener('touchstart', startDrawing);
+        document.addEventListener('touchend', stopDrawing);
+        document.addEventListener('touchcancel', stopDrawing);
+        document.addEventListener('touchmove', Draw);
+      })
+    </script>
+  </div> -->
+  <div id="joy3Div" style="width:200px;height:200px;margin:50px;position:fixed;bottom:30px;left:500px;"></div>
+  <!-- <div style="position:fixed;bottom:125px;left:750px;">
+    Posizione X:<input id="joy3PosizioneX" type="text" /><br />
+    Posizione Y:<input id="joy3PosizioneY" type="text" /><br />
+    Direzione:<input id="joy3Direzione" type="text" /><br />
+    X :<input id="joy3X" type="text" /><br/>
+    Y :<input id="joy3Y" type="text" />
+  </div> -->
+
+  <script>
+
+  </script>
+  <script src="./src/components/joy.min.js"></script>
+  <script src="./public/ammo/ammo.js"></script>
+  <script type="module" src="/index.js"></script>
+</body>
+
 </html>

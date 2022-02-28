@@ -6,16 +6,22 @@ import { createLights } from "./components/light";
 import { createControls } from "./components/controls";
 import { createModel } from "./components/model";
 import { Model, addAnimation } from "./components/modelClass";
+// import Ammo from "ammojs-typed";
+
+
+// console.log("ammo", Ammo);
+// Ammo(Ammo).then(() => {
+//   const v2 = new Ammo.btVector3(1, 2, 3); // <-- works
+// });
 
 var controls;
 var camera, scene, renderer, mixer, clock;
 var modelScene, model;
-console.log('model', model)
+console.log("model", model);
 init();
 animate();
 
 function init() {
-  
   var penyanyi;
   console.log("penyanyi", penyanyi);
   scene = createScene();
@@ -24,7 +30,6 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  
   controls = createControls(camera, renderer.domElement);
   scene.add(controls);
   model = new Model("/hhdancing/hhdancing.gltf", "walker", camera, controls);
@@ -38,10 +43,7 @@ function init() {
     addAnimation("/walker/walks.gltf", "walk", el._animationsMap, el._mixer);
   });
 
-  // scene.add(penyanyi.model);
   clock = new THREE.Clock();
-
-  
 
   const geometry = new THREE.BoxGeometry();
   const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
@@ -52,54 +54,12 @@ function init() {
   const { ambientLight, mainLight, helper } = createLights();
   scene.add(ambientLight, mainLight, helper);
 
-  
-
   penyanyi = createModel(
     scene,
     "penyanyi",
     "./hhdancing/hhdancing.gltf",
     keyPressed
   );
-  // scene.add(penyanyi);
-
-  // loader.load("./hhdancing/hhdancing.gltf", function (gltf) {
-  //   console.log(gltf);
-  //   model = gltf.scene;
-  //   model.scale.set(1, 1, 1);
-  //   model.position.set(0, 0, 0);
-  //   model.rotation.set(0, 0, 0);
-
-  //   console.log("model", model);
-
-  //   const gltfAnimations = gltf.animations;
-  //   mixer = new THREE.AnimationMixer(model);
-
-  //   gltfAnimations.forEach((clip) => {
-  //     mixer.clipAction(clip).play();
-  //   });
-
-  //   const animationsMap = new Map();
-
-  //   console.log("gltfAnimations", gltfAnimations);
-  //   console.log("mixer", mixer);
-  //   gltfAnimations
-  //     .filter((a) => {
-  //       return a.name != "Tpose";
-  //     })
-  //     .forEach((a) => {
-  //       animationsMap.set(a.name, mixer.clipAction(a));
-  //     });
-
-  //   scene.add(model);
-  //   // const clip = THREE.AnimationClip.findByName(gltf.animations, "mixamo.com");
-  //   // const action = mixer.clipAction(clip);
-  //   // action.setLoop(THREE.LoopOnce);
-  //   // action.play();
-
-  //   // load = function () {
-  //   //   mixer.update(mixerUpdateDelta);
-  //   // };
-  // });
 }
 
 function animate() {
@@ -156,6 +116,7 @@ document.addEventListener("keyup", (e) => {
 </script>
 
 <template>
+  <component :is="script" src="../public/ammo/ammo.js" async></component>
   <main>
     <div id="key">
       <div id="a">a</div>

@@ -9,8 +9,8 @@ import {
 function createLights() {
   const ambientLight = new AmbientLight(0x404040);
 
-  const mainLight = new DirectionalLight(0xffffff);
-  mainLight.position.set(0, 1, 0);
+  const mainLight = new DirectionalLight(0xffffff, 2);
+  mainLight.position.set(-60, 60, 60);
 
   const helper = new DirectionalLightHelper(mainLight, 5);
 

@@ -74,12 +74,15 @@ export class Model {
         directionOffset + angleYcameraDirection
       );
 
+      // console.log('rotateQuartenion', this.rotateQuartenion);
+
       // console.log(this.rotateQuartenion);
       // console.log('thismodel ', modelScene)
       modelScene.quaternion.rotateTowards(this.rotateQuartenion, 0.1);
 
       // calculate direction
       var walkDirection = new Vector3();
+
 
       this.camera.getWorldDirection(walkDirection);
       walkDirection.y = 0;
@@ -97,8 +100,6 @@ export class Model {
     }
 
     // this.model.body.needUpdate = true;
-
-    // this.updateCameraTarget(moveX, moveZ, model);
   }
 
   updateCameraTarget(moveX, moveZ) {
