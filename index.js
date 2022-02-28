@@ -413,8 +413,8 @@ function playerControl(forward, turn) {
       walkDirection.normalize();
       walkDirection.applyAxisAngle(rotateAngel, diroffset);
 
-      const moveX = walkDirection.x * delta * 1000;
-      const moveZ = walkDirection.z * delta * 1000;
+      const moveX = walkDirection.x * delta * 100;
+      const moveZ = walkDirection.z * delta * 100;
 
       body.position.x -= moveZ;
       body.position.z += moveX;
