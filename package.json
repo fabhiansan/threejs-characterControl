@@ -12,6 +12,9 @@
     "ammojs-typed": "^1.0.6",
     "cannon": "^0.6.2",
     "cannon-es": "^0.19.0",
+    "cors": "^2.8.5",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
     "three": "^0.137.5",
     "vue": "^3.2.29",
     "vue-class-component": "^8.0.0-0"

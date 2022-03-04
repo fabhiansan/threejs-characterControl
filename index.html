@@ -8,7 +8,6 @@
   <title>Vite App</title>
 
   <style>
-
     #c {
       position: fixed;
       top: 0%;
@@ -311,7 +310,19 @@
   </script>
   <script src="/joy.min.js"></script>
   <script src="/ammo/ammo.js"></script>
-  <script type="module" src="/index.js"></script>
+  <!-- <script type="module" src="/index.js"></script> -->
+  <div id="message">
+    <p id="message_text"></p>
+    <button id="message_ok">OK</button>
+  </div>
+  <script type="module" src="/game.js"></script>
+  <script>
+    // var game;
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   game = new Game();
+    // })
+
+  </script>
 </body>
 
 </html>
