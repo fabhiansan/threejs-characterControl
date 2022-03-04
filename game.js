@@ -500,7 +500,7 @@ class Game {
     };
 
     this.anims.forEach((anim) => {
-      options.assets.push(`./public/${anim}_out/${anim}.gltf`);
+      options.assets.push(`/${anim}_out/${anim}.gltf`);
     });
     options.assets.push(`${game.assetsPath}/fbx/town.fbx`);
 
@@ -620,7 +620,7 @@ class Game {
     // console.log(anim);
     const game = this;
     const loader = new GLTFLoader();
-    loader.load(`./public/${anim}_out/${anim}.gltf`, (gltf) => {
+    loader.load(`/${anim}_out/${anim}.gltf`, (gltf) => {
       this.animationsArray.push(...gltf.animations);
       if (game.anims.length > 0) {
         game.loadNextAnim();
