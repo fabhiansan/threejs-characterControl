@@ -453,7 +453,7 @@ class Game {
     this.camera;
     this.scene;
     this.renderer;
-    this.assetsPath = "/assets/";
+    this.assetsPath = "/assets";
 
     this.controls;
     this.cameraTarget = new THREE.Vector3();
