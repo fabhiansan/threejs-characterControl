@@ -502,7 +502,7 @@ class Game {
     this.anims.forEach((anim) => {
       options.assets.push(`./public/${anim}_out/${anim}.gltf`);
     });
-    options.assets.push(`${game.assetsPath}fbx/town.fbx`);
+    options.assets.push(`${game.assetsPath}/fbx/town.fbx`);
 
     this.mode = this.modes.PRELOAD;
 
